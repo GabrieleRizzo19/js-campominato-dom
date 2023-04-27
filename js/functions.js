@@ -1,3 +1,40 @@
+function createGrid(difficulty){
+
+    let numberOfSquare = 100;
+    grid.style.height = "var(--10x10GridSize)";
+    grid.style.width = "var(--10x10GridSize)";
+
+    if(difficulty == "medium"){
+        numberOfSquare = 81;
+        grid.style.height = "var(--9x9GridSize)";
+        grid.style.width = "var(--9x9GridSize)";
+    }else if(difficulty == "easy"){
+        numberOfSquare = 49;
+        grid.style.height = "var(--7x7GridSize)";
+        grid.style.width = "var(--7x7GridSize)";
+    }
+
+    let sixteenRandomNumber = get16RandomNumber(1, numberOfSquare);
+    console.log(sixteenRandomNumber);
+    for( let i=1; i <= numberOfSquare; i++ ){
+        const newSquare = document.createElement("div");
+        newSquare.classList.add("my-square");
+        newSquare.classList.add(difficulty);
+        newSquare.innerHTML = i;
+        newSquare.addEventListener("click", function(){
+            if(checkIfExistsNumberInArray(this.innerHTML, sixteenRandomNumber)){
+                this.classList.toggle("bg-danger");
+            }else{
+                this.classList.toggle("bg-primary");
+            }
+            console.log(`Hai cliccato il ${i}° quadrato`);
+        })
+        grid.append(newSquare);
+    }
+}
+
+
+
 function checkIfExistsNumberInArray(number, array){
 
     let check = false;
@@ -25,31 +62,3 @@ function get16RandomNumber(min, max){
     return array;
 }
 
-function createGrid(difficulty){
-
-    let numberOfSquare = 100;
-    grid.style.height = "var(--10x10GridSize)";
-    grid.style.width = "var(--10x10GridSize)";
-
-    if(difficulty == "medium"){
-        numberOfSquare = 81;
-        grid.style.height = "var(--9x9GridSize)";
-        grid.style.width = "var(--9x9GridSize)";
-    }else if(difficulty == "easy"){
-        numberOfSquare = 49;
-        grid.style.height = "var(--7x7GridSize)";
-        grid.style.width = "var(--7x7GridSize)";
-    }
-    for( let i=1; i <= numberOfSquare; i++ ){
-        const newSquare = document.createElement("div");
-        newSquare.classList.add("my-square");
-        newSquare.classList.add(difficulty);
-        newSquare.innerHTML = i;
-        newSquare.addEventListener("click", function(){
-            this.classList.toggle("bg-primary");
-            console.log(`Hai cliccato il ${i}° quadrato`);
-        })
-        grid.append(newSquare);
-    }
-
-}

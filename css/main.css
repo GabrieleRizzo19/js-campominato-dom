@@ -50,3 +50,4 @@ main{
     width:  calc( 100% / var(--10x10SquareOnRow));
     height: calc( 100% / var(--10x10SquareOnRow));
 }
+
