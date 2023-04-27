@@ -1,5 +1,6 @@
 function createGrid(difficulty){
 
+    let points = 0;
     let numberOfSquare = 100;
     grid.style.height = "var(--10x10GridSize)";
     grid.style.width = "var(--10x10GridSize)";
@@ -21,21 +22,30 @@ function createGrid(difficulty){
         newSquare.classList.add("my-square");
         newSquare.classList.add(difficulty);
         newSquare.innerHTML = i;
-        function checkIfBomb(){
-            if(sixteenRandomNumber.includes(parseInt(this.innerHTML))){
-                this.classList.toggle("bg-danger");
-                let removeEvent = document.querySelectorAll(".my-square");
-                console.log(removeEvent);
-                for(let c=0; c < removeEvent.length; c++){
-                    removeEvent[c].removeEventListener("click", checkIfBomb);
-                }
-            }else{
-                this.classList.toggle("bg-primary");
-            }
-            console.log(`Hai cliccato il ${i}° quadrato`);
-        }
+        
         newSquare.addEventListener("click", checkIfBomb);
         grid.append(newSquare);
+
+    }
+
+    function checkIfBomb(){
+        if(sixteenRandomNumber.includes(parseInt(this.innerHTML))){
+            this.classList.add("bg-danger");
+            let removeEvent = document.querySelectorAll(".my-square");
+            console.log(removeEvent);
+            for(let c=0; c < removeEvent.length; c++){
+                removeEvent[c].removeEventListener("click", checkIfBomb);
+            }
+            if(points == (numberOfSquare - 16)){
+                endgameMessage.innerHTML = `Complimenti, HAI VINTO!!!`;                
+            }else{
+                endgameMessage.innerHTML = `GAME OVER! Hai ottenuto ${points} punti`
+            }
+        }else{
+            this.classList.toggle("bg-primary");
+            points++;
+        }
+        console.log(`Hai cliccato il ${this.innerHTML}° quadrato`);
     }
 
     
