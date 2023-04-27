@@ -22,7 +22,12 @@ function createGrid(difficulty){
         newSquare.classList.add(difficulty);
         newSquare.innerHTML = i;
         newSquare.addEventListener("click", function(){
-            if(checkIfExistsNumberInArray(this.innerHTML, sixteenRandomNumber)){
+            // if(checkIfExistsNumberInArray(this.innerHTML, sixteenRandomNumber)){
+            //     this.classList.toggle("bg-danger");
+            // }else{
+            //     this.classList.toggle("bg-primary");
+            // }
+            if(sixteenRandomNumber.includes(parseInt(this.innerHTML))){
                 this.classList.toggle("bg-danger");
             }else{
                 this.classList.toggle("bg-primary");
@@ -35,17 +40,17 @@ function createGrid(difficulty){
 
 
 
-function checkIfExistsNumberInArray(number, array){
+// function checkIfExistsNumberInArray(number, array){
 
-    let check = false;
-    for( let i=0; i < array.length; i++){
-        if(number == array[i]){
-            check = true;
-        }
-    }
+//     let check = false;
+//     for( let i=0; i < array.length; i++){
+//         if(number == array[i]){
+//             check = true;
+//         }
+//     }
 
-    return check;
-}
+//     return check;
+// }
 
 function get16RandomNumber(min, max){
     let array = [];
@@ -55,7 +60,11 @@ function get16RandomNumber(min, max){
         pushed = false;
         while(pushed == false){
             num = Math.floor(Math.random() * (max - min + 1) ) + min;
-            if(!checkIfExistsNumberInArray(num, array)){
+            // if(!checkIfExistsNumberInArray(num, array)){
+            //     array.push(num);
+            //     pushed = true;
+            // }
+            if(!(array.includes(num))){
                 array.push(num);
                 pushed = true;
             }
