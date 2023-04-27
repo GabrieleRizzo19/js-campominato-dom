@@ -21,21 +21,24 @@ function createGrid(difficulty){
         newSquare.classList.add("my-square");
         newSquare.classList.add(difficulty);
         newSquare.innerHTML = i;
-        newSquare.addEventListener("click", function(){
-            // if(checkIfExistsNumberInArray(this.innerHTML, sixteenRandomNumber)){
-            //     this.classList.toggle("bg-danger");
-            // }else{
-            //     this.classList.toggle("bg-primary");
-            // }
+        function checkIfBomb(){
             if(sixteenRandomNumber.includes(parseInt(this.innerHTML))){
                 this.classList.toggle("bg-danger");
+                let removeEvent = document.querySelectorAll(".my-square");
+                console.log(removeEvent);
+                for(let c=0; c < removeEvent.length; c++){
+                    removeEvent[c].removeEventListener("click", checkIfBomb);
+                }
             }else{
                 this.classList.toggle("bg-primary");
             }
             console.log(`Hai cliccato il ${i}° quadrato`);
-        })
+        }
+        newSquare.addEventListener("click", checkIfBomb);
         grid.append(newSquare);
     }
+
+    
 }
 
 
