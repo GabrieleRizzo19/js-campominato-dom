@@ -15,4 +15,5 @@ playButton.addEventListener("click", function(){
 
 })
 
-
+// let randomNumber = get16RandomNumber(1,49);
+// console.log(randomNumber);

@@ -49,15 +49,18 @@ function checkIfExistsNumberInArray(number, array){
 
 function get16RandomNumber(min, max){
     let array = [];
-    let num; 
+    let num;
+    let pushed = false;
     for( let i=0; i < 16; i++){
-        num = Math.floor(Math.random() * (max - min + 1) ) + min;
-        for( let c = 0; c < array.length; c++){
-            if(!checkIfExistsNumberInArray){
+        pushed = false;
+        while(pushed == false){
+            num = Math.floor(Math.random() * (max - min + 1) ) + min;
+            if(!checkIfExistsNumberInArray(num, array)){
                 array.push(num);
+                pushed = true;
             }
         }
-        array.push(num);
+        
     }
     return array;
 }
