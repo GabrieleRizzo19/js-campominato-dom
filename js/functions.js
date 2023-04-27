@@ -32,9 +32,12 @@ function createGrid(difficulty){
         if(sixteenRandomNumber.includes(parseInt(this.innerHTML))){
             this.classList.add("bg-danger");
             let removeEvent = document.querySelectorAll(".my-square");
-            console.log(removeEvent);
+            // console.log(removeEvent);
             for(let c=0; c < removeEvent.length; c++){
                 removeEvent[c].removeEventListener("click", checkIfBomb);
+                if(sixteenRandomNumber.includes(parseInt(removeEvent[c].innerHTML))){
+                    removeEvent[c].classList.add("bg-danger");
+                }
             }
             if(points == (numberOfSquare - 16)){
                 endgameMessage.innerHTML = `Complimenti, HAI VINTO!!!`;                
@@ -42,8 +45,17 @@ function createGrid(difficulty){
                 endgameMessage.innerHTML = `GAME OVER! Hai ottenuto ${points} punti`
             }
         }else{
-            this.classList.toggle("bg-primary");
+            this.classList.add("bg-primary");
+            this.removeEventListener("click", checkIfBomb);
             points++;
+            if(points == (numberOfSquare - 16)){
+                endgameMessage.innerHTML = `Complimenti, HAI VINTO!!!`;
+                let removeEvent = document.querySelectorAll(".my-square");
+                // console.log(removeEvent);
+                for(let c=0; c < removeEvent.length; c++){
+                    removeEvent[c].removeEventListener("click", checkIfBomb);
+                }                
+            }
         }
         console.log(`Hai cliccato il ${this.innerHTML}° quadrato`);
     }
