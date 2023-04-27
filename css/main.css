@@ -20,8 +20,6 @@ main{
 
 #my-grid{
     margin: auto;
-    width: var(--10x10GridSize);
-    height: var(--10x10GridSize);
     border: 1px solid black;
 }
 
